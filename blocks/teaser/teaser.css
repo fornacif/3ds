@@ -17,7 +17,6 @@
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 1;
 }
 
 .teaser-background img {
@@ -36,14 +35,12 @@
     background: radial-gradient(circle at 20% 50%, rgba(255, 100, 100, 0.2) 0%, transparent 25%),
                 radial-gradient(circle at 80% 30%, rgba(100, 200, 255, 0.2) 0%, transparent 25%),
                 radial-gradient(circle at 50% 80%, rgba(255, 220, 100, 0.2) 0%, transparent 25%);
-    z-index: 2;
 }
 
 .content-container {
     position: relative;
     max-width: 800px;
     color: white;
-    z-index: 3;
 }
 
 .content-container h1 {
