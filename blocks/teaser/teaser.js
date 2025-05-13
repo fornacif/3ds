@@ -1,14 +1,15 @@
-import { readBlockConfig } from '../../scripts/aem.js';
-import { transformImageSrc } from '../../scripts/utils.js';
+import { readBlockConfig, createOptimizedPicture } from '../../scripts/aem.js';
 
 export default function decorate(block) {
   const config = readBlockConfig(block);
   console.info(JSON.stringify(config));
+  
+  const picture = createOptimizedPicture(config.image, config.imagealt);
 
   const content = document.createRange().createContextualFragment(`
     <section class="teaser-section">
         <div class="teaser-background">
-            <img src="${transformImageSrc(config.image)}" alt="Team collaborating on a unified platform">
+            ${picture.outerHTML}
         </div>
         <div class="bokeh-effect"></div>
         <div class="content-container">

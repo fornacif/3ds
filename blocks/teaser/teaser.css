@@ -1,13 +1,14 @@
 .teaser-section {
     position: relative;
     width: 100%;
-    min-height: 600px;
+    min-height: 500px;
     background-color: #000;
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: flex-start;
     padding: 40px;
+    margin-top: 20px;
 }
 
 .teaser-background {
