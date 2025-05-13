@@ -1,0 +1,90 @@
+/* block.css - Main styles for the teaser block */
+
+.block.teaser {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+  
+  /* Hero section styling */
+  .hero {
+    position: relative;
+    width: 100%;
+    min-height: 400px;
+    color: white;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+  
+  .hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+  }
+  
+  .hero-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 20, 0.5); /* Dark overlay */
+  }
+  
+  .hero-content {
+    padding: 2rem 3rem;
+    max-width: 80%;
+    z-index: 1;
+  }
+  
+  .hero-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+  
+  .hero-text {
+    font-size: 1.1rem;
+    line-height: 1.5;
+    margin-bottom: 2rem;
+    max-width: 80%;
+  }
+  
+  .hero-button {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    background-color: #0078D4;
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+  }
+  
+  .hero-button:hover {
+    background-color: #0063B1;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .hero-content {
+      padding: 1.5rem;
+      max-width: 100%;
+    }
+    
+    .hero-title {
+      font-size: 2rem;
+    }
+    
+    .hero-text {
+      font-size: 1rem;
+      max-width: 100%;
+    }
+  }

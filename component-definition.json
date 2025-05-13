@@ -1,3 +1,4 @@
+
 {
   "groups": [
     {
@@ -158,15 +159,15 @@
           }
         },
         {
-          "title": "Tabbed Content",
-          "id": "tabbed-content",
+          "title": "Teaser",
+          "id": "teaser",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block",
                 "template": {
-                  "name": "Tabbed Content",
-                  "model": "tabbed-content"
+                  "name": "Teaser",
+                  "model": "teaser"
                 }
               }
             }
