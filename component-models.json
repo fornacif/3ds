@@ -242,7 +242,7 @@
         "component": "richtext",
         "name": "text",
         "value": "",
-        "label": "Description Text",
+        "label": "Description",
         "valueType": "string"
       },
       {
@@ -256,21 +256,6 @@
         "component": "aem-content",
         "name": "buttonLink",
         "label": "Button Link"
-      },
-      {
-        "component": "select",
-        "name": "buttonStyle",
-        "label": "Button Style",
-        "options": [
-          {
-            "name": "Primary",
-            "value": "primary"
-          },
-          {
-            "name": "Secondary",
-            "value": "secondary"
-          }
-        ]
       }
     ]
   }
