@@ -4,7 +4,7 @@ export default function decorate(block) {
   const config = readBlockConfig(block);
   console.info(JSON.stringify(config));
   
-  const picture = createOptimizedPicture(config.image, config.imagealt);
+  const picture = createOptimizedPicture(config.image, config.imageDescription);
 
   const content = document.createRange().createContextualFragment(`
     <section class="teaser-section">
