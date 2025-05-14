@@ -2,12 +2,13 @@ import { readBlockConfig } from '../../scripts/aem.js';
 
 export default function decorate(block) {
   const config = readBlockConfig(block);
+  console.info(config.model)
 
   const content = document.createRange().createContextualFragment(`
     <div>
       <model-viewer id="model-viewer"
           style="width: 100%; height: 100%; background-color: white" 
-          src="${config.model}" 
+          src="${config.asset}" 
           camera-controls
           auto-rotate="false"
           touch-action

@@ -262,8 +262,8 @@
       {
         "component": "reference",
         "valueType": "string",
-        "name": "model",
-        "label": "3D Model",
+        "name": "asset",
+        "label": "3D Asset",
         "multi": false
       }
     ]
