@@ -3,7 +3,7 @@
     "/content/dassault/:/",
     "/content/dassault/configuration:/.helix/config.json",
     "/content/dassault/metadata:/metadata.json",
-    "/content/dam/dassault/:/images/"
+    "/content/dam/dassault/:/"
   ],
   "includes": [
     "/content/dassault/",
