@@ -5,7 +5,6 @@ export default function decorate(block) {
 
   const content = document.createRange().createContextualFragment(`
     <div>
-      <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
       <model-viewer id="model-viewer"
           style="width: 100%; height: 100%; background-color: white" 
           src="${config.image}" 
