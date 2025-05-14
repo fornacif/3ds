@@ -257,12 +257,12 @@
     ]
   },
   {
-    "id": "3dviewer",
+    "id": "3d-viewer",
     "fields": [
       {
         "component": "reference",
         "valueType": "string",
-        "name": "3dmodel",
+        "name": "3d-model",
         "label": "3D Model",
         "multi": false
       }
