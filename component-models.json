@@ -255,5 +255,17 @@
         "label": "Button Link"
       }
     ]
+  },
+  {
+    "id": "3dviewer",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "3dmodel",
+        "label": "3D Model",
+        "multi": false
+      }
+    ]
   }
 ]

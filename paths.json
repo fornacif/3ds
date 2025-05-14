@@ -2,11 +2,9 @@
   "mappings": [
     "/content/dassault/:/",
     "/content/dassault/configuration:/.helix/config.json",
-    "/content/dassault/metadata:/metadata.json",
-    "/content/dam/dassault/:/"
+    "/content/dassault/metadata:/metadata.json"
   ],
   "includes": [
-    "/content/dassault/",
-    "/content/dam/dassault/"
+    "/content/dassault/"
   ]
 }
