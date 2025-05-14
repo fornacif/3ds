@@ -7,7 +7,7 @@ export default function decorate(block) {
     <div>
       <model-viewer id="model-viewer"
           style="width: 100%; height: 100%; background-color: white" 
-          src="${config.image}" 
+          src="${config.model}" 
           camera-controls
           auto-rotate="false"
           touch-action

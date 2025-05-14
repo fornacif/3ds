@@ -262,7 +262,7 @@
       {
         "component": "reference",
         "valueType": "string",
-        "name": "3d-model",
+        "name": "model",
         "label": "3D Model",
         "multi": false
       }
