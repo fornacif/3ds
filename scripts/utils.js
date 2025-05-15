@@ -1,6 +1,6 @@
 export async function loadNav() {
     try {
-        const response = await fetch(`/nav.json`);
+        const response = await fetch(`/navigation-index.json`);
         if (!response.ok) {
             throw new Error(`Failed to fetch navigation: ${response.status} ${response.statusText}`);
         }
