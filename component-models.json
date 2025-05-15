@@ -234,7 +234,7 @@
         "component": "text",
         "valueType": "string",
         "name": "imageDescription", 
-        "label": "Image Description"
+        "label": "Image Alt Text",
       },
       {
         "component": "text",
