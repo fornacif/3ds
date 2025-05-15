@@ -6,15 +6,9 @@ export async function loadNav() {
         }
         const result = await response.json();
 
-        const filteredData = result.data.filter(item => 
+        return result.data.filter(item => 
             item.path.startsWith('/pages/')
         );
-        
-        filteredData.forEach(item => {
-            item.path = item.path.replace('/pages', '');
-        });
-
-        return filteredData;
     } catch (error) {
         console.error('Error loading navigation:', error);
         return [];
