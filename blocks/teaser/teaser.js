@@ -14,8 +14,8 @@ export default function decorate(block) {
         <div class="bokeh-effect"></div>
         <div class="content-container">
             <h1 data-aue-prop="title" data-aue-type="text">${config.title}</h1>
-            <p>${config.description}</p>
-            <a href="${config.buttonlink}" class="learn-more-btn">${config.buttontext}</a>
+            <p data-aue-prop="description" data-aue-type="text">${config.description}</p>
+            <a data-aue-prop="buttontext" data-aue-type="text" href="${config.buttonlink}" class="learn-more-btn">${config.buttontext}</a>
         </div>
     </section>
   `);
