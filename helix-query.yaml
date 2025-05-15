@@ -17,6 +17,8 @@ indices:
   nav:
     include:
       - '/pages/**'
+    exclude:
+      - '/**.json'
     target: /nav.json
     properties:
       lastModified:
