@@ -13,7 +13,7 @@ export default function decorate(block) {
         </div>
         <div class="bokeh-effect"></div>
         <div class="content-container">
-            <h1>${config.title}</h1>
+            <h1 data-aue-prop="title" data-aue-type="text">${config.title}</h1>
             <p>${config.description}</p>
             <a href="${config.buttonlink}" class="learn-more-btn">${config.buttontext}</a>
         </div>
@@ -22,4 +22,6 @@ export default function decorate(block) {
 
   block.textContent = '';
   block.append(content);
+
+  
 }
