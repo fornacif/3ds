@@ -219,6 +219,11 @@
     "id": "teaser",
     "fields": [
       {
+        "component": "tab",
+        "label": "Default",
+        "name": "default"
+      },
+      {
         "component": "reference",
         "valueType": "string",
         "name": "image",
@@ -253,6 +258,31 @@
         "component": "aem-content",
         "name": "buttonLink",
         "label": "Button Link"
+      },
+      {
+        "component": "tab",
+        "label": "Offer",
+        "name": "offer"
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "offerZone",
+        "label": "Button Text",
+        "options": [
+          {
+            "name": "Teaser Zone",
+            "value": "teaser-zone"
+          },
+          {
+            "name": "Carousel Zone",
+            "value": "carousel-zone"
+          },
+          {
+            "name": "Navigation Zone",
+            "value": "navigation-zone"
+          }
+        ]
       }
     ]
   },
