@@ -3,6 +3,7 @@ import { isAuthorMode, loadNav } from '../../scripts/utils.js';
 export default async function decorate(block) {
   const navItems = await loadNav();
   let logoImage = isAuthorMode ? '/content/dassault.resource/icons/logo.svg': '/icons/logo.svg';
+  let searchImage = isAuthorMode ? '/content/dassault.resource/icons/search.svg': '/icons/search.svg';
 
   const content = document.createRange().createContextualFragment(`
     <header class="header" role="banner" aria-label="Dassault Systèmes Main Navigation">
@@ -23,7 +24,7 @@ export default async function decorate(block) {
       
       <div class="right-nav">
         <button class="search-btn" aria-label="Search">
-          <img src="/icons/search.svg" alt="Search Icon" class="search-icon">
+          <img src="${searchImage}" alt="Search Icon" class="search-icon">
         </button>
       </div>
     </header>
