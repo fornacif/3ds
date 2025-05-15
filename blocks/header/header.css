@@ -89,23 +89,11 @@
 .search-btn {
   background: none;
   border: none;
-  cursor: pointer;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background-color var(--transition-speed);
-}
-
-.search-btn:hover {
-  background-color: rgba(0, 0, 0, 0.05);
 }
 
 .search-btn img {
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
 }
 
 .mobile-menu-btn {
@@ -131,29 +119,6 @@
   width: 100%;
   background-color: var(--text-color);
   transition: all var(--transition-speed);
-}
-
-.theme-toggle {
-  background: none;
-  border: none;
-  cursor: pointer;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background-color var(--transition-speed);
-}
-
-.theme-toggle:hover {
-  background-color: rgba(0, 0, 0, 0.05);
-}
-
-.theme-toggle svg {
-  width: 20px;
-  height: 20px;
-  fill: var(--text-color);
 }
 
 @media (max-width: 992px) {

@@ -1,6 +1,9 @@
-import { getMetadata } from '../../scripts/aem.js';
+import { isAuthorMode, loadNav } from '../../scripts/utils.js';
 
 export default async function decorate(block) {
+  loadNav();
+  let logoImage = isAuthorMode ? '/content/dassault.resource/icons/logo.svg': '/icons/logo.svg';
+
   const content = document.createRange().createContextualFragment(`
     <header class="header" role="banner" aria-label="Dassault Systèmes Main Navigation">
       <button class="mobile-menu-btn" aria-expanded="false" aria-controls="main-navigation" aria-label="Toggle menu">
@@ -12,17 +15,17 @@ export default async function decorate(block) {
       </button>
       
       <a href="/" class="logo-link" aria-label="Dassault Systèmes Home">
-        <img src="/icons/logo.svg" alt="Dassault Systèmes Logo" class="logo">
+        <img src="${logoImage}" alt="Dassault Systèmes Logo" class="logo">
       </a>
       
       <nav id="main-navigation" class="main-nav" role="navigation" aria-label="Main Navigation">
         <div class="nav-item">
-          <a href="#products" class="nav-link" aria-haspopup="true" aria-expanded="false">
+          <a href="./products" class="nav-link" aria-haspopup="true" aria-expanded="false">
             Products
           </a>
         </div>
         <div class="nav-item">
-          <a href="#industries" class="nav-link" aria-haspopup="true" aria-expanded="false">
+          <a href="./industries" class="nav-link" aria-haspopup="true" aria-expanded="false">
             Industries
           </a>
         </div>
@@ -54,41 +57,12 @@ export default async function decorate(block) {
   block.textContent = '';
   block.append(content);
 
-  document.addEventListener('DOMContentLoaded', function() {
-    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-    const mainNav = document.querySelector('.main-nav');
-    
-    mobileMenuBtn.addEventListener('click', function() {
-        const expanded = this.getAttribute('aria-expanded') === 'true' || false;
-        this.setAttribute('aria-expanded', !expanded);
-        this.classList.toggle('open');
-        mainNav.classList.toggle('open');
-    });
-    
-    // Handle window resize - reset mobile menu if window goes above breakpoint
-    window.addEventListener('resize', function() {
-        if (window.innerWidth > 1024 && mainNav.classList.contains('open')) {
-            mobileMenuBtn.classList.remove('open');
-            mobileMenuBtn.setAttribute('aria-expanded', 'false');
-            mainNav.classList.remove('open');
-        }
-    });
-    
-    // Add click handlers for dropdown menus if needed
-    // This is a basic implementation - for a full implementation, you would add dropdown menus
-    const navLinks = document.querySelectorAll('.nav-link[aria-haspopup="true"]');
-    
-    navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            // For demo purposes, we're preventing the default behavior
-            // In a real implementation, you would toggle dropdown visibility here
-            if (window.innerWidth <= 1024) {
-                e.preventDefault();
-                const expanded = this.getAttribute('aria-expanded') === 'true' || false;
-                this.setAttribute('aria-expanded', !expanded);
-                // Here you would toggle the visibility of the associated dropdown menu
-            }
-        });
-    });
-});
+  const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+  const mainNav = document.querySelector('.main-nav');
+  
+  mobileMenuBtn.addEventListener('click', () => {
+    const isExpanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true';
+    mobileMenuBtn.setAttribute('aria-expanded', !isExpanded);
+    mainNav.classList.toggle('active');
+  });
 }
