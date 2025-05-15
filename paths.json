@@ -1,12 +1,12 @@
 {
   "mappings": [
-    "/content/dassault/:/",
-    "/content/dassault/configuration:/.helix/config.json",
-    "/content/dassault/metadata:/metadata.json",
-    "/content/dassault/pages/:/"
+    "/content/3ds/:/",
+    "/content/3ds/configuration:/.helix/config.json",
+    "/content/3ds/metadata:/metadata.json",
+    "/content/3ds/pages/:/"
   ],
   "includes": [
-    "/content/dassault",
-    "/content/dassault/pages"
+    "/content/3ds",
+    "/content/3ds/pages"
   ]
 }
