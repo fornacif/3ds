@@ -17,6 +17,8 @@ indices:
   nav:
     include:
       - '/pages/**'
+    exclude:
+      - '/pages'
     target: /nav.json
     properties:
       title:
