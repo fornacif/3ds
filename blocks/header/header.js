@@ -1,4 +1,4 @@
-import { getIconPath } from '../../scripts/utils.js';
+import { getPagePath, getIconPath } from '../../scripts/utils.js';
 
 export default async function decorate(block) {
   const content = document.createRange().createContextualFragment(`
@@ -17,27 +17,27 @@ export default async function decorate(block) {
       
       <nav id="main-navigation" class="main-nav" role="navigation" aria-label="Main Navigation">
         <div class="nav-item">
-          <a href="./pages/products" class="nav-link" aria-haspopup="true" aria-expanded="false">
+          <a href="${getPagePath('/pages/products')}" class="nav-link" aria-haspopup="true" aria-expanded="false">
             Products
           </a>
         </div>
         <div class="nav-item">
-          <a href="./pages/industries" class="nav-link" aria-haspopup="true" aria-expanded="false">
+          <a href="${getPagePath('/pages/industries')}" class="nav-link" aria-haspopup="true" aria-expanded="false">
             Industries
           </a>
         </div>
         <div class="nav-item">
-          <a href="./pages/learn" class="nav-link" aria-haspopup="true" aria-expanded="false">
+          <a href="${getPagePath('/pages/learn')}" class="nav-link" aria-haspopup="true" aria-expanded="false">
             Learn
           </a>
         </div>
         <div class="nav-item">
-          <a href="./pages/support" class="nav-link" aria-haspopup="true" aria-expanded="false">
+          <a href="${getPagePath('/pages/support')}" class="nav-link" aria-haspopup="true" aria-expanded="false">
             Support
           </a>
         </div>
         <div class="nav-item">
-          <a href="./pages/about" class="nav-link" aria-haspopup="true" aria-expanded="false">
+          <a href="${getPagePath('/pages/about')}" class="nav-link" aria-haspopup="true" aria-expanded="false">
             About
           </a>
         </div>

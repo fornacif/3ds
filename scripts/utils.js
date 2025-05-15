@@ -15,9 +15,13 @@ export async function loadNav() {
     }
 }
 
+export function getPagePath(path){
+    return isAuthorMode ? `${path}.html` : path;
+};
+
 export function getIconPath(imageName){
     const basePath = isAuthorMode ? '/content/3ds.resource/icons/' : '/icons/';
     return basePath + imageName;
-  };
+};
 
 export const isAuthorMode = window.location.href.includes('.html');
