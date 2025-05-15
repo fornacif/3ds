@@ -1,8 +1,7 @@
 import { isAuthorMode, loadNav } from '../../scripts/utils.js';
 
 export default async function decorate(block) {
-  const navItems = loadNav();
-  console.info(navItems);
+  const navItems = await loadNav();
   let logoImage = isAuthorMode ? '/content/dassault.resource/icons/logo.svg': '/icons/logo.svg';
 
   const content = document.createRange().createContextualFragment(`
@@ -20,31 +19,6 @@ export default async function decorate(block) {
       </a>
       
       <nav id="main-navigation" class="main-nav" role="navigation" aria-label="Main Navigation">
-        <div class="nav-item">
-          <a href="./products" class="nav-link" aria-haspopup="true" aria-expanded="false">
-            Products
-          </a>
-        </div>
-        <div class="nav-item">
-          <a href="./industries" class="nav-link" aria-haspopup="true" aria-expanded="false">
-            Industries
-          </a>
-        </div>
-        <div class="nav-item">
-          <a href="#learn" class="nav-link" aria-haspopup="true" aria-expanded="false">
-            Learn
-          </a>
-        </div>
-        <div class="nav-item">
-          <a href="#support" class="nav-link" aria-haspopup="true" aria-expanded="false">
-            Support
-          </a>
-        </div>
-        <div class="nav-item">
-          <a href="#about" class="nav-link" aria-haspopup="true" aria-expanded="false">
-            About
-          </a>
-        </div>
       </nav>
       
       <div class="right-nav">
@@ -57,6 +31,22 @@ export default async function decorate(block) {
 
   block.textContent = '';
   block.append(content);
+
+  const nav = document.querySelector('#main-navigation');
+  navItems.forEach(item => {
+    const navItem = document.createElement('div');
+    navItem.classList.add('nav-item');
+    const link = document.createElement('a');
+    link.classList.add('nav-link');
+    link.href = item.path;
+    link.textContent = item.title;
+    link.setAttribute('aria-haspopup', 'true');
+    link.setAttribute('aria-expanded', 'false');
+    link.setAttribute('aria-controls', 'sub-navigation');
+    link.setAttribute('aria-label', item.title);
+    navItem.append(link);
+    nav.append(navItem);
+  });
 
   const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
   const mainNav = document.querySelector('.main-nav');
