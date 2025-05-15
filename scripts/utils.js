@@ -16,7 +16,7 @@ export async function loadNav() {
 }
 
 export function getPagePath(path){
-    return isAuthorMode ? `${path}.html` : path;
+    return isAuthorMode ? `/content/3ds${path}.html` : path;
 };
 
 export function getIconPath(imageName){
