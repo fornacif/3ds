@@ -15,7 +15,7 @@ export default function decorate(block) {
         <div class="content-container">
             <h1 data-aue-prop="title" data-aue-type="text">${config.title}</h1>
             <p data-aue-prop="description" data-aue-type="text">${config.description}</p>
-            <a data-aue-prop="buttontext" data-aue-type="text" href="${config.buttonlink}" class="learn-more-btn">${config.buttontext}</a>
+            <a data-aue-prop="buttonText" data-aue-type="text" href="${config.buttonlink}" class="learn-more-btn">${config.buttontext}</a>
         </div>
     </section>
   `);
