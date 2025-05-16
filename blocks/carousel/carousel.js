@@ -114,5 +114,5 @@ export default function decorate(block) {
   }
   
   // Initialize the automatic slideshow
-  //startInterval();
+  startInterval();
 }
