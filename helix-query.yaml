@@ -18,6 +18,9 @@ indices:
         select: head > meta[property="og:title"]
         value: |
           attribute(el, 'content')
+  assets:
+    include:
+      - '/content/dam/3ds/**'
   navigation:
     include:
       - '/pages/**'
