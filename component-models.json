@@ -323,7 +323,7 @@
         "label": "Profile Type Label"
       },
       {
-        "component": "select",
+        "component": "text",
         "valueType": "string",
         "name": "profileTypeOptions",
         "label": "Profile Type Options",
