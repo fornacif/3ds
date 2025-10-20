@@ -161,6 +161,21 @@
     ]
   },
   {
+    "id": "menuItem",
+    "fields": [
+      {
+        "component": "text",
+        "name": "title",
+        "label": "Title"
+      },
+      {
+        "component": "aem-content",
+        "name": "link",
+        "label": "Link"
+      }
+    ]
+  },
+  {
     "id": "columns",
     "fields": [
       {
