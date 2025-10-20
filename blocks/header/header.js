@@ -1,5 +1,4 @@
 import { loadFragment } from '../fragment/fragment.js';
-import { readBlockConfig } from '../../scripts/aem.js';
 import { getPagePath, getIconPath, getCurrentLocale } from '../../scripts/utils.js';
 
 function switchLocale(targetLocale) {
@@ -41,16 +40,32 @@ function buildNavigationHTML(menuItems) {
   `).join('');
 }
 
+function extractLoginModalData(fragment) {
+  const loginModalBlock = fragment.querySelector('.login-modal.block');
+  const items = loginModalBlock.querySelectorAll(':scope > div');
+  const title = items[0]?.querySelector('p')?.textContent.trim() || 'Login';
+  const usernameLabel = items[1]?.querySelector('p')?.textContent.trim() || 'Username';
+  const profileTypeLabel = items[2]?.querySelector('p')?.textContent.trim() || 'Profile Type';
+  const optionsText = items[3]?.querySelector('p')?.textContent.trim() || '';
+  const cancelButtonLabel = items[4]?.querySelector('p')?.textContent.trim() || 'Cancel';
+
+  // Parse options: "Designer=Designer,Engineer=Engineer,Administrator=Administrator"
+  const profileOptions = optionsText.split(',').map(option => {
+    const [value, label] = option.split('=');
+    return { value: value?.trim(), label: label?.trim() };
+  }).filter(opt => opt.value && opt.label);
+
+  return { title, usernameLabel, profileTypeLabel, profileOptions, cancelButtonLabel };
+}
+
 export default async function decorate(block) {
   const headerPath = `/${getCurrentLocale()}/header`;
   const fragment = await loadFragment(headerPath);
 
-  const config = readBlockConfig( fragment.querySelector('.fragment.block') );
-  console.log('Loaded header fragment:', config);
-
   const currentLocale = getCurrentLocale();
   const menuItems = extractMenuItems(fragment);
   const navigationHTML = buildNavigationHTML(menuItems);
+  const loginModalData = extractLoginModalData(fragment);
   const content = document.createRange().createContextualFragment(`
     <div class="header" role="banner" aria-label="Main Navigation">
       <button class="mobile-menu-btn" aria-expanded="false" aria-controls="main-navigation" aria-label="Toggle menu">
@@ -85,29 +100,26 @@ export default async function decorate(block) {
     <div class="modal-overlay" id="loginModal">
     <div class="modal" role="dialog" aria-labelledby="loginModalTitle">
       <div class="modal-header">
-        <h2 class="modal-title" id="loginModalTitle">Login</h2>
+        <h2 class="modal-title" id="loginModalTitle">${loginModalData.title}</h2>
         <button class="modal-close" id="closeModal" aria-label="Close modal">&times;</button>
       </div>
       <div class="modal-body">
         <form id="loginForm">
           <div class="form-group">
-            <label for="username" class="form-label">Username</label>
+            <label for="username" class="form-label">${loginModalData.usernameLabel}</label>
             <input type="text" id="username" class="form-input" required>
           </div>
           <div class="form-group">
-            <label for="profileType" class="form-label">Profile Type</label>
+            <label for="profileType" class="form-label">${loginModalData.profileTypeLabel}</label>
             <select id="profileType" class="form-select" required>
-              <option value="">Select profile type</option>
-              <option value="designer">Designer</option>
-              <option value="engineer">Engineer</option>
-              <option value="administrator">Administrator</option>
+              ${loginModalData.profileOptions.map(opt => `<option value="${opt.value}">${opt.label}</option>`).join('')}
             </select>
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-cancel" id="cancelBtn">Cancel</button>
-        <button type="submit" form="loginForm" class="btn btn-login">Login</button>
+        <button type="button" class="btn btn-cancel" id="cancelBtn">${loginModalData.cancelButtonLabel}</button>
+        <button type="submit" form="loginForm" class="btn btn-login">${loginModalData.title}</button>
       </div>
     </div>
   </div>
