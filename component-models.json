@@ -302,6 +302,49 @@
     ]
   },
   {
+    "id": "loginModal",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "title",
+        "label,": "Title"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "usernameLabel",
+        "label": "Username Label"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "profileTypeLabel",
+        "label": "Profile Type Label"
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "profileTypeOptions",
+        "label": "Profile Type Options",
+        "options": [
+          {
+            "name": "Designer",
+            "value": "designer"
+          },
+          {
+            "name": "Engineer",
+            "value": "engineer"
+          },
+          {
+            "name": "Administrator",
+            "value": "administrator"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "id": "3d-viewer",
     "fields": [
       {

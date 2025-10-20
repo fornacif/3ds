@@ -1,20 +1,9 @@
 const SITE_ROOT = '/content/3ds';
 
-export async function loadNav() {
-    try {
-        const response = await fetch(`/navigation-index.json?$timestamp=${Date.now()}`);
-        if (!response.ok) {
-            throw new Error(`Failed to fetch navigation: ${response.status} ${response.statusText}`);
-        }
-        const result = await response.json();
-
-        return result.data.filter(item => 
-            item.path.startsWith('/pages/')
-        );
-    } catch (error) {
-        console.error('Error loading navigation:', error);
-        return [];
-    }
+export function getCurrentLocale() {
+  const path = window.location.pathname;
+  const match = path.match(/^\/(us\/en|fr\/fr)\//);
+  return match ? match[1] : 'us/en';
 }
 
 export function getPagePath(path){

@@ -220,6 +220,22 @@
           }
         },
         {
+          "title": "Login Modal",
+          "id": "loginModal",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Login Modal",
+                  "model": "loginModal",
+                  "key-value": true
+                }
+              }
+            }
+          }
+        },
+        {
           "title": "3D Viewer",
           "id": "3d-viewer",
           "plugins": {

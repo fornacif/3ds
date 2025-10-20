@@ -14,7 +14,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 2rem;
   height: 72px;
   background-color: var(--light-color);
   position: sticky;
@@ -30,6 +29,7 @@
 
 .logo {
   height: 32px;
+  padding: 0 2rem;
 }
 
 .main-nav {
@@ -77,33 +77,12 @@
 }
 
 /* Buttons */
-.search-btn, .mobile-menu-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.5rem;
-  transition: var(--transition);
-}
-
-.search-btn:hover, .mobile-menu-btn:hover {
-  transform: scale(1.05);
-}
-
-.search-icon {
-  width: 20px;
-  height: 20px;
-  color: var(--dark-color);
-}
-
 .login-btn {
   display: flex;
   align-items: center;
   gap: 0.5rem;
   background-color: transparent;
-  border: 1.5px solid var(--primary-color);
+  border: 0.5px solid var(--primary-color);
   color: var(--primary-color);
   border-radius: 10px;
   padding: 0.5rem 1rem;
@@ -118,6 +97,7 @@
 .login-btn:hover {
   background-color: var(--primary-color);
   color: var(--light-color);
+  transform: none;
 }
 
 .login-btn:hover img {
@@ -139,7 +119,7 @@
   -webkit-appearance: none;
   -moz-appearance: none;
   background-color: transparent;
-  border: 1.5px solid var(--primary-color);
+  border: 0.5px solid var(--primary-color);
   color: var(--primary-color);
   border-radius: 10px;
   padding: 0.5rem 1rem;
@@ -261,8 +241,9 @@
 }
 
 .modal-close {
-  background: rgba(233, 236, 239, 0.5);
-  border: none;
+  background: var(--light-color);
+  border: 0.5px solid var(--primary-color);
+  border-radius: 10px;
   width: 32px;
   height: 32px;
   display: flex;
@@ -351,6 +332,9 @@
 
 .btn-cancel {
   background-color: rgba(233, 236, 239, 0.5);
+  background: var(--light-color);
+  border: 0.5px solid var(--primary-color);
+  border-radius: 10px;
   color: var(--dark-color);
 }
 
@@ -366,7 +350,6 @@
 
 .btn-login:hover {
   background-color: #004d8a;
-  transform: translateY(-2px);
   box-shadow: 0 6px 12px rgba(0, 95, 169, 0.25);
 }
 
@@ -378,13 +361,10 @@
 }
 
 @media (max-width: 768px) {
-  .header {
-    padding: 0 1rem;
-  }
-  
   .mobile-menu-btn {
     display: block;
     order: -1;
+    background-color: var(--light-color);
   }
   
   .main-nav {

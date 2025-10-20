@@ -1,10 +1,5 @@
-import { getPagePath, getIconPath } from '../../scripts/utils.js';
-
-function getCurrentLocale() {
-  const path = window.location.pathname;
-  const match = path.match(/^\/(us\/en|fr\/fr)\//);
-  return match ? match[1] : 'us/en';
-}
+import { loadFragment } from '../fragment/fragment.js';
+import { getPagePath, getIconPath, getCurrentLocale } from '../../scripts/utils.js';
 
 function switchLocale(targetLocale) {
   const currentLocale = getCurrentLocale();
@@ -13,8 +8,45 @@ function switchLocale(targetLocale) {
   window.location.href = newPath;
 }
 
+function extractMenuItems(fragment) {
+  const menuItems = [];
+  const menuBlock = fragment.querySelector('.menu.block');
+
+  if (menuBlock) {
+    const items = menuBlock.querySelectorAll(':scope > div');
+    items.forEach(item => {
+      const labelEl = item.querySelector('div:first-child p');
+      const linkEl = item.querySelector('div:nth-child(2) a');
+
+      if (labelEl && linkEl) {
+        menuItems.push({
+          label: labelEl.textContent.trim(),
+          path: linkEl.getAttribute('href')
+        });
+      }
+    });
+  }
+
+  return menuItems;
+}
+
+function buildNavigationHTML(menuItems) {
+  return menuItems.map(item => `
+    <div class="nav-item">
+      <a href="${getPagePath(item.path)}" class="nav-link" aria-haspopup="true" aria-expanded="false">
+        ${item.label}
+      </a>
+    </div>
+  `).join('');
+}
+
 export default async function decorate(block) {
+  const headerPath = `/${getCurrentLocale()}/header`;
+  const fragment = await loadFragment(headerPath);
+
   const currentLocale = getCurrentLocale();
+  const menuItems = extractMenuItems(fragment);
+  const navigationHTML = buildNavigationHTML(menuItems);
   const content = document.createRange().createContextualFragment(`
     <div class="header" role="banner" aria-label="Main Navigation">
       <button class="mobile-menu-btn" aria-expanded="false" aria-controls="main-navigation" aria-label="Toggle menu">
@@ -25,36 +57,12 @@ export default async function decorate(block) {
         </div>
       </button>
       
-      <a href="${getPagePath('/us/en/home')}" class="logo-link" aria-label="Home">
+      <a href="${getPagePath(`/${currentLocale}/home`)}" class="logo-link" aria-label="Home">
         <img src="${getIconPath('logo.svg')}" alt="Logo" class="logo">
       </a>
       
       <nav id="main-navigation" class="main-nav" role="navigation" aria-label="Main Navigation">
-        <div class="nav-item">
-          <a href="${getPagePath('/us/en/pages/products')}" class="nav-link" aria-haspopup="true" aria-expanded="false">
-            Products
-          </a>
-        </div>
-        <div class="nav-item">
-          <a href="${getPagePath('/us/en/pages/industries')}" class="nav-link" aria-haspopup="true" aria-expanded="false">
-            Industries
-          </a>
-        </div>
-        <div class="nav-item">
-          <a href="${getPagePath('/us/en/pages/learn')}" class="nav-link" aria-haspopup="true" aria-expanded="false">
-            Learn
-          </a>
-        </div>
-        <div class="nav-item">
-          <a href="${getPagePath('/us/en/pages/support')}" class="nav-link" aria-haspopup="true" aria-expanded="false">
-            Support
-          </a>
-        </div>
-        <div class="nav-item">
-          <a href="${getPagePath('/us/en/pages/about')}" class="nav-link" aria-haspopup="true" aria-expanded="false">
-            About
-          </a>
-        </div>
+        ${navigationHTML}
       </nav>
       
       <div class="right-nav">
@@ -65,7 +73,7 @@ export default async function decorate(block) {
           </select>
         </div>
         <button class="login-btn" id="loginBtn" aria-label="Login">
-          <img src="${getIconPath('not-logged.svg')}" alt="User not logged"></img><span>Login</span>
+          <img src="${getIconPath('not-logged.svg')}" alt="User not logged"></img>
         </button>
       </div>
     </div>
@@ -124,7 +132,7 @@ export default async function decorate(block) {
         localStorage.removeItem('logged');
         localStorage.removeItem('username');
         localStorage.removeItem('profileType');
-        loginBtn.innerHTML = `<img src="${getIconPath('not-logged.svg')}" alt="User not logged"></img><span>Login</span>`;
+        loginBtn.innerHTML = `<img src="${getIconPath('not-logged.svg')}" alt="User not logged"></img>`;
     } else {
       loginModal.classList.add('active');
     }
