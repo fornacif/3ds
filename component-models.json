@@ -324,7 +324,7 @@
       },
       {
         "component": "text",
-        "valueType": "string",
+        "valueType": "string[]",
         "name": "profileTypeOptions",
         "label": "Profile Type Options",
         "multi": true
