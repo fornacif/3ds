@@ -328,6 +328,12 @@
         "name": "profileTypeOptions",
         "label": "Profile Type Options",
         "multi": true
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "cancelButtonLabel",
+        "label": "Cancel Button Label"
       }
     ]
   },
