@@ -302,7 +302,7 @@
     ]
   },
   {
-    "id": "loginModal",
+    "id": "login-modal",
     "fields": [
       {
         "component": "text",
