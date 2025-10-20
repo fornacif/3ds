@@ -327,20 +327,7 @@
         "valueType": "string",
         "name": "profileTypeOptions",
         "label": "Profile Type Options",
-        "options": [
-          {
-            "name": "Designer",
-            "value": "designer"
-          },
-          {
-            "name": "Engineer",
-            "value": "engineer"
-          },
-          {
-            "name": "Administrator",
-            "value": "administrator"
-          }
-        ]
+        "multi": true
       }
     ]
   },
