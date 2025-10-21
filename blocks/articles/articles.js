@@ -1,65 +1,71 @@
-const GRAPHQL_ENDPOINT = 'https://author-p34570-e1263228.adobeaemcloud.com/graphql/execute.json/3ds/articles-all';
+function extractArticlesFromBlock(block) {
+  const articles = [];
+  const articleDivs = block.querySelectorAll(':scope > div');
 
-async function fetchArticles() {
-  try {
-    const response = await fetch(GRAPHQL_ENDPOINT, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Basic ${btoa('aio:aio')}`
-        }
-    });
-    if (!response.ok) {
-      throw new Error(`Failed to fetch articles: ${response.status}`);
+  articleDivs.forEach((articleDiv, index) => {
+    const children = articleDiv.querySelectorAll(':scope > div');
+
+    if (children.length >= 4) {
+      const title = children[0]?.querySelector('p')?.textContent.trim() || '';
+      const category = children[1]?.querySelector('p')?.textContent.trim() || '';
+      const description = children[2]?.querySelector('p')?.textContent.trim() || '';
+      const picture = children[3]?.querySelector('picture');
+
+      articles.push({
+        title,
+        category,
+        description,
+        picture: picture ? picture.outerHTML : '',
+        index
+      });
     }
-    const data = await response.json();
-    return data.data.articleList.items || [];
-  } catch (error) {
-    console.error('Error fetching articles:', error);
-    return [];
-  }
+  });
+
+  return articles;
 }
 
 function buildArticleCard(article) {
-  const imageUrl = article.image?._dynamicUrl || article.image?._path || '';
-  const description = article.description?.plaintext || article.description?.markdown || '';
-  const title = article.title || 'Untitled';
-  const category = article.category || '';
+  const blockId = `article-${article.index}`;
 
   return `
     <div class="article-card">
-      ${imageUrl ? `
-        <div class="article-image">
-          <img src="${imageUrl}" alt="${title}" loading="lazy">
-        </div>
-      ` : ''}
-      <div class="article-content">
-        ${category ? `<span class="article-category">${category}</span>` : ''}
-        <h3 class="article-title">${title}</h3>
-        ${description ? `<p class="article-description">${description}</p>` : ''}
+      <div id="${blockId}-image" class="article-background">
+        ${article.picture}
+      </div>
+      <div class="bokeh-effect"></div>
+      <div class="content-container">
+        ${article.category ? `<span id="${blockId}-category" class="article-category">${article.category}</span>` : ''}
+        <h3 id="${blockId}-title" class="article-title">${article.title}</h3>
+        ${article.description ? `<p id="${blockId}-description" class="article-description">${article.description}</p>` : ''}
       </div>
     </div>
   `;
 }
 
 export default async function decorate(block) {
-  // Show loading state
-  block.innerHTML = '<div class="articles-loading">Loading articles...</div>';
+  console.log(block);
 
-  // Fetch articles
-  const articles = await fetchArticles();
+  // Extract articles from the block structure
+  const articles = extractArticlesFromBlock(block);
 
   if (articles.length === 0) {
-    block.innerHTML = '<div class="articles-empty">No articles found.</div>';
+    const emptyContent = document.createRange().createContextualFragment(`
+      <div class="articles-empty">No articles found.</div>
+    `);
+    block.textContent = '';
+    block.append(emptyContent);
     return;
   }
 
   // Build articles grid
   const articlesHTML = articles.map(article => buildArticleCard(article)).join('');
 
-  block.innerHTML = `
+  const content = document.createRange().createContextualFragment(`
     <div class="articles-grid">
       ${articlesHTML}
     </div>
-  `;
+  `);
+
+  block.textContent = '';
+  block.append(content);
 }
