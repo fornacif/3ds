@@ -13,7 +13,7 @@ async function fetchArticlesFromAPI() {
     const doc = parser.parseFromString(html, 'text/html');
 
     // Find the articles block in the parsed HTML
-    const articlesBlock = doc.querySelector('.articles.block');
+    const articlesBlock = doc.querySelector('.articles');
     if (!articlesBlock) {
       return [];
     }
