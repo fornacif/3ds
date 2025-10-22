@@ -1,3 +1,30 @@
+const API_ENDPOINT = 'https://85792-162babybluelobster-stage.adobeioruntime.net/api/v1/web/byom/3ds';
+
+async function fetchArticlesFromAPI() {
+  try {
+    const response = await fetch(API_ENDPOINT);
+    if (!response.ok) {
+      throw new Error(`Failed to fetch articles: ${response.status}`);
+    }
+    const html = await response.text();
+
+    // Parse HTML string into DOM
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, 'text/html');
+
+    // Find the articles block in the parsed HTML
+    const articlesBlock = doc.querySelector('.articles.block');
+    if (!articlesBlock) {
+      return [];
+    }
+
+    return extractArticlesFromBlock(articlesBlock);
+  } catch (error) {
+    console.error('Error fetching articles from API:', error);
+    return [];
+  }
+}
+
 function extractArticlesFromBlock(block) {
   const articles = [];
   const articleDivs = block.querySelectorAll(':scope > div');
@@ -44,8 +71,21 @@ function buildArticleCard(article) {
 
 export default async function decorate(block) {
   // Extract articles from the block structure
-  const articles = extractArticlesFromBlock(block);
+  let articles = extractArticlesFromBlock(block);
 
+  // If no articles found in block, try fetching from API
+  if (articles.length === 0) {
+    // Show loading state
+    const loadingContent = document.createRange().createContextualFragment(`
+      <div class="articles-loading">Loading articles...</div>
+    `);
+    block.textContent = '';
+    block.append(loadingContent);
+
+    articles = await fetchArticlesFromAPI();
+  }
+
+  // If still no articles found, show empty state
   if (articles.length === 0) {
     const emptyContent = document.createRange().createContextualFragment(`
       <div class="articles-empty">No articles found.</div>
