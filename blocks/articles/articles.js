@@ -43,8 +43,6 @@ function buildArticleCard(article) {
 }
 
 export default async function decorate(block) {
-  console.log(block);
-
   // Extract articles from the block structure
   const articles = extractArticlesFromBlock(block);
 
