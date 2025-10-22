@@ -50,10 +50,8 @@ function extractLang(path) {
 }
 
 export default async function decorate(block) {
-  // Extract articles from the block structure
   let articles = extractArticlesFromBlock(block);
 
-  // If still no articles found, show empty state
   if (articles.length === 0) {
     const emptyContent = document.createRange().createContextualFragment(`
       <div class="articles-empty">No articles found.</div>
@@ -63,7 +61,6 @@ export default async function decorate(block) {
     return;
   }
 
-  // Build articles grid
   const articlesHTML = articles.map(article => buildArticleCard(article)).join('');
 
   const content = document.createRange().createContextualFragment(`
