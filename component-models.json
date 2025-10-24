@@ -239,11 +239,16 @@
         "name": "default"
       },
       {
-        "component": "custom-media",
+        "component": "reference",
         "valueType": "string",
         "name": "image",
         "label": "Background Image",
         "multi": false
+      },
+      {
+        "component": "custom-media",
+        "valueType": "string",
+        "name": "customImage"
       },
       {
         "component": "text",
