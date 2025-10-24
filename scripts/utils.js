@@ -1,13 +1,19 @@
-const SITE_ROOT = '/content/3ds';
+function getSiteName() {
+  const path = window.location.pathname;
+  const match = path.match(/^\/content\/([^/]+)\//);
+  return match ? match[1] : '/';
+}
+
+const SITE_ROOT = `/content/${getSiteName()}`;
 
 export function getCurrentLocale() {
   const path = window.location.pathname;
-  const match = path.match(/(?:^\/content\/3ds\/)?(us\/en|fr\/fr)\//);
+  const match = path.match(/(?:^\/content\/[^/]+\/)?(us\/en|fr\/fr)\//);
   return match ? match[1] : 'us/en';
 }
 
 export function getPagePath(path){
-    return isAuthorMode ? `${SITE_ROOT}${path === "/" ? "/index" : path}.html` : path;
+  return isAuthorMode ? `${SITE_ROOT}${path}.html` : path;
 };
 
 export function getIconPath(imageName) {
