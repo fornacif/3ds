@@ -239,7 +239,7 @@
         "name": "default"
       },
       {
-        "component": "media",
+        "component": "reference",
         "valueType": "string",
         "name": "image",
         "label": "Background Image"
