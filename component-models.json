@@ -240,7 +240,7 @@
       },
       {
         "component": "custom-media",
-        "valueType": "string",
+        "valueType": "custom-media",
         "name": "image",
         "label": "Background Image"
       },
