@@ -1,5 +1,3 @@
-const API_ENDPOINT = 'https://85792-162babybluelobster-stage.adobeioruntime.net/api/v1/web/byom/3ds';
-
 function extractArticlesFromBlock(block) {
   const articles = [];
   const articleDivs = block.querySelectorAll(':scope > div');
