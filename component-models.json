@@ -246,9 +246,9 @@
         "multi": false
       },
       {
-        "component": "custom-media",
+        "component": "dropbox-media",
         "valueType": "string",
-        "name": "customImage"
+        "name": "dropboxMedia"
       },
       {
         "component": "commerce-picker:picker",
