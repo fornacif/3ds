@@ -251,10 +251,14 @@
         "name": "customImage"
       },
       {
-        "component": "commerce-category",
+        "component": "commerce-picker:picker",
         "name": "commerce-category",
         "label": "Commerce Category",
-        "valueType": "string"
+        "valueType": "string",
+        "commerce-picker": {
+          "selection-mode": "single",
+          "selection-type": "folder"
+        }
       },
       {
         "component": "text",
