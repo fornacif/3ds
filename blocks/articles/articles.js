@@ -42,11 +42,6 @@ function buildArticleCard(article) {
   `;
 }
 
-function extractLang(path) {
-  const parts = path.split('/').filter(part => part !== '');
-  return parts.length >= 4 ? parts[3] : null;
-}
-
 export default async function decorate(block) {
   let articles = extractArticlesFromBlock(block);
 
