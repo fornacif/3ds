@@ -118,6 +118,7 @@ h6 { font-size: var(--heading-font-size-xs); }
   font-weight: 700;
   line-height: 1.0;
   padding-bottom: 0.5em;
+  margin-bottom: 0.8em;
   border-bottom: 2px solid var(--text-color);
   display: inline-block;
 }
