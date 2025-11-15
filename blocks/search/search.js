@@ -3,8 +3,30 @@
  * @param {Element} block The search block element
  */
 export default async function decorate(block) {
+  // Extract title and description from block content
+  const rows = [...block.children];
+  let title = 'Search';
+  let description = 'Enter keywords to find what you\'re looking for';
+
+  rows.forEach((row) => {
+    const cols = [...row.children];
+    if (cols.length >= 2) {
+      const key = cols[0].textContent.trim().toLowerCase();
+      const value = cols[1].textContent.trim();
+
+      if (key === 'title') {
+        title = value;
+      } else if (key === 'description') {
+        description = value;
+      }
+    }
+  });
+
   const searchHTML = `
     <div class="search-container">
+      <h3 class="search-title">${title}</h3>
+      <p class="search-subtitle">${description}</p>
+
       <form class="search-form" role="search">
         <div class="search-wrapper">
           <input
@@ -14,15 +36,8 @@ export default async function decorate(block) {
             aria-label="Search"
             autocomplete="off"
           />
-          <button type="submit" class="search-button" aria-label="Submit search">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="11" cy="11" r="8"/>
-              <path d="m21 21-4.35-4.35"/>
-            </svg>
-          </button>
         </div>
       </form>
-      <div class="search-results" aria-live="polite" aria-atomic="true"></div>
     </div>
   `;
 
@@ -31,30 +46,9 @@ export default async function decorate(block) {
   block.append(content);
 
   const searchForm = block.querySelector('.search-form');
-  const searchInput = block.querySelector('.search-input');
-  const searchResults = block.querySelector('.search-results');
 
   searchForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const query = searchInput.value.trim();
-
-    if (!query) return;
-
-    searchResults.innerHTML = '<p class="search-loading">Searching...</p>';
-
     // Placeholder for search implementation
-    // In a real implementation, this would call a search API
-    setTimeout(() => {
-      searchResults.innerHTML = `
-        <p class="search-info">Search results for: <strong>${query}</strong></p>
-        <p class="search-no-results">No results found. Please try different keywords.</p>
-      `;
-    }, 500);
-  });
-
-  searchInput.addEventListener('input', () => {
-    if (!searchInput.value.trim()) {
-      searchResults.innerHTML = '';
-    }
   });
 }

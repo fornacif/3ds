@@ -290,7 +290,9 @@
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block",
                 "template": {
-                  "name": "Search"
+                  "name": "Search",
+                  "model": "search",
+                  "key-value": true
                 }
               }
             }
