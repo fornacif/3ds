@@ -5,7 +5,7 @@ export default async function decorate(block) {
 
   const filters = config.filters.split(',');
   const filterButtons = filters.map((filter, index) =>
-    `<button type="button" class="search-filter-btn ${index === 0 ? 'active' : ''}" data-filter="${filter.toLowerCase().replace(/\s+/g, '-')}">${filter}</button>`
+    `<button type="button" class="search-filter-btn ${index === 0 ? 'active' : ''}">${filter}</button>`
   ).join('');
 
   const searchHTML = `
@@ -25,7 +25,7 @@ export default async function decorate(block) {
         </div>
       </form>
 
-      <div class="search-filters" data-aue-label="Filters" data-aue-prop="filters" data-aue-type="text">
+      <div class="search-filters">
         ${filterButtons}
       </div>
     </div>
