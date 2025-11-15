@@ -1,9 +1,6 @@
-/**
- * Search block
- * @param {Element} block The search block element
- */
+import { moveInstrumentation } from '../../scripts/scripts.js';
+
 export default async function decorate(block) {
-  // Extract title and description from block content
   const rows = [...block.children];
   let title = 'Search';
   let description = 'Enter keywords to find what you\'re looking for';
@@ -41,7 +38,7 @@ export default async function decorate(block) {
     </div>
   `;
 
-  const content = document.createRange().createContextualFragment(searchHTML);
+  const content = document.createRange().createContextualFragment(moveInstrumentation(searchHTML));
   block.textContent = '';
   block.append(content);
 
