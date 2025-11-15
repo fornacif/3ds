@@ -27,8 +27,7 @@ function extractMenuItems(fragment) {
     });
   }
 
-  // apply only on author environment paths
-  if (isAuthorMode) {
+  if (!isAuthorMode) {
     menuItems.forEach(item => {
       item.path = item.path.replace(/\/templates\//, '/pages/');
     });
