@@ -392,5 +392,9 @@
         "multi": true
       }
     ]
+  },
+  {
+    "id": "services",
+    "fields": []
   }
 ]
