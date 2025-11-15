@@ -24,7 +24,7 @@ export default async function decorate(block) {
   const searchHTML = `
     <div class="search-container">
       <h3 class="search-title" data-aue-label="Title" data-aue-prop="title" data-aue-type="text">${title}</h3>
-      <p class="search-subtitle" data-aue-label="Description" data-aue-prop="description" data-aue-type="text">${description}</p>
+      <p class="search-subtitle" data-aue-label="Subtitle" data-aue-prop="subtitle" data-aue-type="text">${description}</p>
 
       <form class="search-form" role="search">
         <div class="search-wrapper">

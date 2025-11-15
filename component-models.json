@@ -381,8 +381,8 @@
       {
         "component": "text",
         "valueType": "string",
-        "name": "description",
-        "label": "Description"
+        "name": "subtitle",
+        "label": "Subtitle"
       }
     ]
   }
