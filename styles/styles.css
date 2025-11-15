@@ -12,9 +12,14 @@
 
 :root {
   /* colors */
-  --background-color: white;
+  --primary-color: #005FA9;
+  --secondary-color: #77B6E8;
+  --dark-color: #202A36;
   --light-color: #f8f8f8;
-  --dark-color: #505050;
+  --accent-color: #FF6B35;
+  --gray-color: #E9ECEF;
+  --dark-gray: #6C757D;
+  --background-color: white;
   --text-color: #131313;
   --link-color: #3b63fb;
   --link-hover-color: #1d3ecf;
@@ -29,7 +34,7 @@
   --body-font-size-xs: 17px;
 
   /* heading sizes */
-  --heading-font-size-xxl: 55px;
+  --heading-font-size-xxl: 45px;
   --heading-font-size-xl: 44px;
   --heading-font-size-l: 34px;
   --heading-font-size-m: 27px;
@@ -38,6 +43,9 @@
 
   /* nav height */
   --nav-height: 64px;
+
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --transition: all 0.3s ease;
 }
 
 /* fallback fonts */
@@ -61,7 +69,7 @@
     --body-font-size-xs: 14px;
 
     /* heading sizes */
-    --heading-font-size-xxl: 45px;
+    --heading-font-size-xxl: 55px;
     --heading-font-size-xl: 36px;
     --heading-font-size-l: 28px;
     --heading-font-size-m: 22px;
@@ -84,10 +92,6 @@ body.appear {
   display: block;
 }
 
-header {
-  height: var(--nav-height);
-}
-
 h1,
 h2,
 h3,
@@ -108,6 +112,15 @@ h3 { font-size: var(--heading-font-size-l); }
 h4 { font-size: var(--heading-font-size-m); }
 h5 { font-size: var(--heading-font-size-s); }
 h6 { font-size: var(--heading-font-size-xs); }
+
+.default-content-wrapper h1 {
+  font-size: var(--heading-font-size-l);
+  font-weight: 700;
+  line-height: 1.0;
+  padding-bottom: 0.5em;
+  border-bottom: 2px solid var(--text-color);
+  display: inline-block;
+}
 
 p,
 dl,
@@ -132,9 +145,7 @@ pre {
   white-space: pre;
 }
 
-main > div {
-  margin: 40px 16px;
-}
+
 
 input,
 textarea,
