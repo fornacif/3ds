@@ -3,15 +3,19 @@ import { readBlockConfig } from '../../scripts/aem.js';
 export default async function decorate(block) {
   const config = readBlockConfig(block);
 
-  const filters = config.filters.split(',');
+
+  const title = config.title || 'Search';
+  const subtitle = config.subtitle || 'Enter keywords to find what you\'re looking for';
+
+  const filters = config.filters ? config.filters.split(',').map(f => f.trim()).filter(f => f) : [];
   const filterButtons = filters.map((filter, index) =>
     `<button type="button" class="search-filter-btn ${index === 0 ? 'active' : ''}">${filter}</button>`
   ).join('');
 
   const searchHTML = `
     <div class="search-container">
-      <h3 class="search-title" data-aue-label="Title" data-aue-prop="title" data-aue-type="text">${config.title}</h3>
-      <p class="search-subtitle" data-aue-label="Subtitle" data-aue-prop="subtitle" data-aue-type="text">${config.subtitle}</p>
+      <h3 class="search-title" data-aue-label="Title" data-aue-prop="title" data-aue-type="text">${title}</h3>
+      <p class="search-subtitle" data-aue-label="Subtitle" data-aue-prop="subtitle" data-aue-type="text">${subtitle}</p>
 
       <form class="search-form" role="search">
         <div class="search-wrapper">
@@ -29,9 +33,7 @@ export default async function decorate(block) {
         </div>
       </form>
 
-      <div class="search-filters">
-        ${filterButtons}
-      </div>
+      ${filterButtons ? `<div class="search-filters">${filterButtons}</div>` : ''}
     </div>
   `;
 
@@ -42,16 +44,17 @@ export default async function decorate(block) {
   const searchForm = block.querySelector('.search-form');
   const filterBtns = block.querySelectorAll('.search-filter-btn');
 
-  // Handle filter selection
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      const filter = btn.dataset.filter;
-      // Placeholder for filter logic
-      console.log('Selected filter:', filter);
+  // Handle filter selection only if filters exist
+  if (filterBtns.length > 0) {
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        // Placeholder for filter logic
+        console.log('Selected filter:', btn.textContent);
+      });
     });
-  });
+  }
 
   searchForm.addEventListener('submit', async (e) => {
     e.preventDefault();
